@@ -1,0 +1,84 @@
+{#
+ * Template: courses.html.twig
+ *
+ * @param Contentful\Delivery\Resource\Entry[]    courses
+ * @param Contentful\Delivery\Resource\Entry[]    categories
+ * @param Contentful\Delivery\Resource\Entry|null currentCategory
+ #}
+
+{% extends 'base.html.twig' %}
+
+{% set title = (currentCategory ? currentCategory.title : 'allCoursesLabel'|trans) ~ ' (' ~ courses|length ~ ')' %}
+
+{% block page_title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    <div class="layout-no-sidebar">
+        {% include 'partials/breadcrumb.html.twig' with {} only %}
+    </div>
+
+    <div class="layout-sidebar">
+        <section class="layout-sidebar__sidebar">
+            <div class="layout-sidebar__sidebar-header">
+                <h2 class="layout-sidebar__sidebar-title">{{ 'categoriesLabel'|trans }}</h2>
+            </div>
+
+            <div class="layout-sidebar__sidebar-content">
+                <div class="sidebar-menu">
+                    <ul class="sidebar-menu__list">
+                        <li class="sidebar-menu__item">
+                            <a href="{{ path('courses') ~ state.queryString }}" class="sidebar-menu__link {{ currentCategory ? '' : 'active' }}">{{ 'allCoursesLabel'|trans }}</a>
+                        </li>
+
+                        {% for category in categories %}
+                            <li class="sidebar-menu__item">
+                                <a
+                                    href="{{ path('category', {categorySlug: category.slug}) ~ state.queryString }}"
+                                    class="sidebar-menu__link {{ currentCategory and category.id == currentCategory.id ? 'active' : '' }}"
+                                    >{{ category.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="layout-sidebar__content">
+            <div class="courses">
+                <h1>{{ title }}</h1>
+
+                {% if state.hasEditorialFeaturesEnabled %}
+                    <div class="editorial-features">
+                        <div class="editorial-features__item">
+                            <a
+                                href="https://app.contentful.com/spaces/{{ state.spaceId }}/entries/?contentTypeId=course"
+                                class="editorial-features__text"
+                                target="_blank"
+                                rel="noopener"
+                            >{{ 'editInTheWebAppLabel'|trans }}</a>
+
+                            <div class="editorial-features__hint-wrapper">
+                                <svg class="editorial-features__hint-icon">
+                                    <use xlink:href="{{ asset('/icons/icons.svg#info') }}" />
+                                    <div class="editorial-features__hint-message">{{ 'editorialFeaturesHint'|trans }}</div>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="grid-list">
+                    {% for course in courses %}
+                        <div class="grid-list__item">
+                            {% include 'partials/courseCard.html.twig' with {course: course} only %}
+                        </div>
+                    {% else %}
+                        {% include 'partials/emptyModule.html.twig' with {} only %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

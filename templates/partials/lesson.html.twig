@@ -1,0 +1,43 @@
+{#
+ * Template: partials/lesson.html.twig
+ *
+ * @param Contentful\Delivery\Resource\Entry course
+ * @param Contentful\Delivery\Resource\Entry lesson
+ * @param Contentful\Delivery\Resource\Entry nextLesson
+ #}
+
+<div class="lesson">
+    <h1 class="lesson__title">{{ lesson.title }}</h1>
+
+    {% include 'partials/editorialFeatures.html.twig' with {entry: lesson} only %}
+
+    <div class="lesson__modules">
+        {% for module in lesson.modules %}
+            {% if module.contentType %}
+                {% if module.contentType.id == 'lessonCodeSnippets' %}
+                    {% include 'partials/lessonCodeSnippets.html.twig' with {module: module} only %}
+                {% endif %}
+
+                {% if module.contentType.id == 'lessonCopy' %}
+                    {% include 'partials/lessonModuleCopy.html.twig' with {module: module} only %}
+                {% endif %}
+
+                {% if module.contentType.id == 'lessonImage' %}
+                    {% include 'partials/lessonModuleImage.html.twig' with {module: module} only %}
+                {% endif %}
+            {% else %}
+                <h2>{{ 'lessonModuleErrorTitle'|trans }}</h2>
+                <p>
+                    <span>{{ 'lessonModuleErrorBody'|trans }}</span>
+                    <strong>{{ module.id }}</strong>
+                </p>
+            {% endif %}
+        {% else %}
+            {% include 'partials/emptyModule.html.twig' with {} only %}
+        {% endfor %}
+    </div>
+
+    {% if nextLesson %}
+        <a href="{{ path('lesson', {courseSlug: course.slug, lessonSlug: nextLesson.slug}) ~ state.queryString }}" class="lesson__cta cta">{{ 'nextLessonLabel'|trans }}</a>
+    {% endif %}
+</div>

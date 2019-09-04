@@ -1,0 +1,28 @@
+{#
+ * Template: partials/moduleCopy.html.twig
+ *
+ * @param Contentful\Delivery\Resource\Entry module
+ #}
+
+{% set style = module.visualStyle == 'Emphasized' ? '--emphasized' : '' %}
+
+<div class="module module-copy{{ style }}">
+    <div class="module-copy__wrapper{{ style }}">
+        <div class="module-copy__first{{ style }}">
+            {% if module.headline %}
+                <h1 class="module-copy__headline{{ style }}">{{ module.headline }}</h1>
+            {% endif %}
+
+            <div class="module-copy__copy{{ style }}">
+                {{ module.copy|markdown }}
+            </div>
+
+        </div>
+
+        <div class="module-copy__second{{ style }}">
+            {% if module.ctaTitle and module.ctaLink %}
+                <a href="{{ module.ctaLink }}" class="cta module-copy__cta{{ style }}">{{ module.ctaTitle }}</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

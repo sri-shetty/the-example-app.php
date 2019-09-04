@@ -1,0 +1,19 @@
+{#
+ * Template: partials/lessonModuleImage.html.twig
+ *
+ * @param Contentful\Delivery\Resource\Entry module
+ #}
+
+ <div class="lesson-module lesson-module-image">
+    {% if module.image and module.image.file and module.image.file.url %}
+        <figure class="lesson-module-image__figure">
+            <img src="{{ module.image.file.url }}" alt="{{ module.image.title }}" class="lesson-module-image__image" />
+
+            {% if module.caption %}
+                <figcaption class="lesson-module-image__caption">{{ module.caption }}</figcaption>
+            {% endif %}
+        </figure>
+    {% else %}
+        <h3>{{ 'imageErrorTitle'|trans }}</h3>
+    {% endif %}
+</div>

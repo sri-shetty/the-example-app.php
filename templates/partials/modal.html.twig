@@ -1,0 +1,76 @@
+{#
+ * Template: partials/modal.html.twig
+ #}
+
+ <section class="modal" id="about-this-modal">
+     <div class="modal__overlay close"></div>
+     <div class="modal__wrapper">
+         <h1 class="modal__title">{{ 'modalTitlePhp'|trans }}</h1>
+         <div class="modal__content">
+             <p>
+                 {{ 'modalIntroPhp'|trans }}
+                 <a href="https://github.com/contentful/the-example-app.php" target="_blank" rel="noopener">Github</a>.
+             </p>
+             <p>
+                 {{ 'modalSpaceIntro'|trans }}
+                 <a href="https://github.com/contentful/content-models/blob/master/the-example-app/README.md " target="_blank" rel="noopener">{{ 'modalSpaceLinkLabel'|trans }}</a>.
+             </p>
+
+             <p>{{ 'modalPlatforms'|trans }}</p>
+             <ul>
+                 <li>
+                     <img src="{{ asset('images/icon-nodejs.svg') }}" /><br />
+                     <a href="https://the-example-app-nodejs.contentful.com/{{ state.usesCookieCredentials ? state.shareableLinkQuery : '' }}" rel="noopener" target="_blank">{{ 'hostedLabel'|trans }}</a> <br />
+                     <a href="https://github.com/contentful/the-example-app.nodejs" rel="noopener" target="_blank">GitHub</a>
+                 </li>
+                 <li>
+                     <img src="{{ asset('images/icon-dotnet.svg') }}" /><br />
+                     <a href="https://the-example-app-csharp.contentful.com/{{ state.usesCookieCredentials ? state.shareableLinkQuery : '' }}" rel="noopener" target="_blank">{{ 'hostedLabel'|trans }}</a> <br />
+                     <a href="https://github.com/contentful/the-example-app.csharp" rel="noopener" target="_blank">GitHub</a>
+                 </li>
+                 <li>
+                     <img src="{{ asset('images/icon-ruby.svg') }}" /><br />
+                     <a href="https://the-example-app-rb.contentful.com/{{ state.usesCookieCredentials ? state.shareableLinkQuery : '' }}" rel="noopener" target="_blank">{{ 'hostedLabel'|trans }}</a> <br />
+                     <a href="https://github.com/contentful/the-example-app.rb" rel="noopener" target="_blank">GitHub</a>
+                 </li>
+                 <li>
+                     <img src="{{ asset('images/icon-php.svg') }}" /><br />
+                     <a href="https://the-example-app-php.contentful.com/{{ state.usesCookieCredentials ? state.shareableLinkQuery : '' }}" rel="noopener" target="_blank">{{ 'hostedLabel'|trans }}</a> <br />
+                     <a href="https://github.com/contentful/the-example-app.php" rel="noopener" target="_blank">GitHub</a>
+                 </li>
+                 <li>
+                     <img src="{{ asset('images/icon-python.svg') }}" /><br />
+                     <a href="https://the-example-app-py.contentful.com/{{ state.usesCookieCredentials ? state.shareableLinkQuery : '' }}" rel="noopener" target="_blank">{{ 'hostedLabel'|trans }}</a> <br />
+                     <a href="https://github.com/contentful/the-example-app.py" rel="noopener" target="_blank">GitHub</a>
+                 </li>
+                 <li>
+                     <img src="{{ asset('images/icon-java.svg') }}" /><br />
+                     <a href="https://the-example-app-java.contentful.com/{{ state.usesCookieCredentials ? state.shareableLinkQuery : '' }}" rel="noopener" target="_blank">{{ 'hostedLabel'|trans }}</a> <br />
+                     <a href="https://github.com/contentful/the-example-app.java" rel="noopener" target="_blank">GitHub</a>
+                 </li>
+                 <li>
+                     <img src="{{ asset('images/icon-swift.svg') }}" /><br />
+                     <a href="https://itunes.apple.com/app/contentful-reference/id1333721890" rel="noopener" target="_blank">{{ 'hostedLabel'|trans }}</a> <br />
+                     <a href="https://github.com/contentful/the-example-app.swift" rel="noopener" target="_blank">GitHub</a>
+                 </li>
+                 <li>
+                     <img src="{{ asset('images/icon-android.svg') }}" /><br />
+                     <a href="https://play.google.com/store/apps/details?id=com.contentful.tea.kotlin" rel="noopener" target="_blank">{{ 'hostedLabel'|trans }}</a> <br />
+                     <a href="https://github.com/contentful/the-example-app.kotlin" rel="noopener" target="_blank">GitHub</a>
+                 </li>
+             </ul>
+         </div>
+
+         <div class="modal__cta-wrapper">
+             <a class="modal__cta close" href="#">{{ 'modalCTALabel'|trans }}</a>
+         </div>
+
+         <div class="modal__close-wrapper">
+             <a class="modal__close-button close" href="#">
+                 <svg>
+                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/icons/icons.svg#cross"></use>
+                 </svg>
+             </a>
+         </div>
+     </div>
+ </section>
